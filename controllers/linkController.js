@@ -29,7 +29,6 @@ export const createLink = async (req, res) => {
 
 // LIST ALL LINKS
 export const getLinks = async (req, res) => {
-  await connectDB()
   const links = await Link.find().sort({ createdAt: -1 });
   res.json(links);
 };
