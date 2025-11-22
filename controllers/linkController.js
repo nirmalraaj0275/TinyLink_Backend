@@ -65,5 +65,11 @@ export const handleRedirect = async (req, res) => {
   link.lastClicked = new Date();
   await link.save();
 
-  res.redirect(link.url);
+  let finalUrl = link.url.trim();
+
+  if (!finalUrl.startsWith("http://") && !finalUrl.startsWith("https://")) {
+    finalUrl = "https://" + finalUrl;
+  }
+
+  return res.redirect(301, finalUrl);
 };
