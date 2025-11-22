@@ -6,7 +6,7 @@ const linkSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      match: /^[A-Za-z0-9]{6,8}$/  // Code rule
+      match: /^[A-Za-z0-9]{6,8}$/
     },
     url: { type: String, required: true },
     totalClicks: { type: Number, default: 0 },

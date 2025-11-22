@@ -11,11 +11,10 @@ export const createLink = async (req, res) => {
   try {
     const { code, url } = req.body;
 
-    // Validate fields
     if (!code || !url)
       return res.status(400).json({ error: "code and url required" });
 
-    // Check duplicate
+   
     const exists = await Link.findOne({ code });
     if (exists) return res.status(409).json({ error: "code already exists" });
 
