@@ -19,7 +19,7 @@ router.get("/api/links", getLinks);
 router.get("/api/links/:code", getLinkStats);
 router.delete("/api/links/:code", deleteLink);
 
-// REDIRECT ROUTE
+// REDIRECT ROUTE (IMPORTANT: MUST BE LAST!)
 router.get("/:code", handleRedirect);
 
 export default router;
