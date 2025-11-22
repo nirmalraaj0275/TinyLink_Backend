@@ -27,7 +27,7 @@ export const createLink = async (req, res) => {
   }
 };
 
-// LIST ALL LINKS
+// LIST ALL LINK
 export const getLinks = async (req, res) => {
   const links = await Link.find().sort({ createdAt: -1 });
   res.json(links);
@@ -68,6 +68,7 @@ export const handleRedirect = async (req, res) => {
   if (!finalUrl.startsWith("http://") && !finalUrl.startsWith("https://")) {
     finalUrl = "https://" + finalUrl;
   }
+
 
   res.redirect(finalUrl);
 };
