@@ -1,19 +1,23 @@
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import mongoose from "mongoose";
 
+let isConnected = false; // Global connection flag
 
-dotenv.config();
+export default async function connectDB() {
+  if (isConnected) {
+    console.log("MongoDB already connected");
+    return;
+  }
 
-const connectdb = async ()=>{
-    try {
-        await mongoose.connect(process.env.MONGODB_URL, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
-        console.log("Connected to MongoDB");
-    } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
-    }
+  try {
+    const conn = await mongoose.connect(process.env.MONGODB_URL, {
+      serverSelectionTimeoutMS: 15000, // 15 sec
+      socketTimeoutMS: 45000,         // 45 sec
+    });
+
+    isConnected = conn.connections[0].readyState === 1;
+
+    console.log("MongoDB connected");
+  } catch (error) {
+    console.error("MongoDB connection error:", error);
+  }
 }
-
-export default connectdb;
