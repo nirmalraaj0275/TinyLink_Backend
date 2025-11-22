@@ -60,9 +60,15 @@ export const handleRedirect = async (req, res) => {
   const link = await Link.findOne({ code });
   if (!link) return res.status(404).send("Not found");
 
-  // Update stats
   link.totalClicks += 1;
   link.lastClicked = new Date();
   await link.save();
-  res.redirect(link.url);
+
+  let finalUrl = link.url.trim();
+  if (!finalUrl.startsWith("http://") && !finalUrl.startsWith("https://")) {
+    finalUrl = "https://" + finalUrl;
+  }
+
+  res.redirect(finalUrl);
 };
+
