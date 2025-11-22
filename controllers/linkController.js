@@ -1,7 +1,7 @@
 import connectDB from "../config/db.js";
 import Link from "../models/Link.js";
 
-// HEALTH CHECK
+
 export const healthz = (req, res) => {
   res.status(200).json({ ok: true, version: "1.0" });
 };
@@ -33,7 +33,7 @@ export const getLinks = async (req, res) => {
   res.json(links);
 };
 
-// GET STATS FOR ONE CODE
+
 export const getLinkStats = async (req, res) => {
   const { code } = req.params;
 
