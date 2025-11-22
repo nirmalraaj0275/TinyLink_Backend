@@ -16,7 +16,7 @@ router.get("/healthz", healthz);
 // API ROUTES
 router.post("/api/links", createLink);
 router.get("/api/links", getLinks);
-router.get("/api/links/:code", getLinkStats);
+router.get("/:code", getLinkStats);
 router.delete("/api/links/:code", deleteLink);
 
 // REDIRECT ROUTE
